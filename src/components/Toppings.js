@@ -8,12 +8,13 @@ const containerVariants = {
     x: '100vw',
   },
   visible: {
-    x: 0,
     opacity: 1,
-    transition: {
-      type: 'spring',
-      delay: 0.5,
-    },
+    x: 0,
+    transition: { type: 'spring', delay: 0.5 },
+  },
+  exit: {
+    x: '-100vh',
+    transition: { ease: 'easeInOut' },
   },
 };
 
@@ -23,8 +24,8 @@ const buttonVariants = {
     textShadow: '0px 0px 8px rgb(255,255,255)',
     boxShadow: '0px 0px 8px rgb(255,255,255)',
     transition: {
-      yoyo: Infinity,
       duration: 0.3,
+      yoyo: Infinity,
     },
   },
 };
@@ -45,9 +46,9 @@ const Toppings = ({ addTopping, pizza }) => {
       variants={containerVariants}
       initial="hidden"
       animate="visible"
+      exit="exit"
     >
       <h3>Step 2: Choose Toppings</h3>
-
       <ul>
         {toppings.map((topping) => {
           let spanClass = pizza.toppings.includes(topping) ? 'active' : '';
@@ -55,7 +56,7 @@ const Toppings = ({ addTopping, pizza }) => {
             <motion.li
               key={topping}
               onClick={() => addTopping(topping)}
-              whileHover={{ scale: 1.2, originX: 0, color: '#f8e112' }}
+              whileHover={{ scale: 1.3, originX: 0, color: '#f8e112' }}
               transition={{ type: 'spring', stiffness: 300 }}
             >
               <span className={spanClass}>{topping}</span>
@@ -63,7 +64,6 @@ const Toppings = ({ addTopping, pizza }) => {
           );
         })}
       </ul>
-
       <Link to="/order">
         <motion.button variants={buttonVariants} whileHover="hover">
           Order
