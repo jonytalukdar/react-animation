@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch } from 'react-router-dom';
 import Header from './components/Header';
 import Home from './components/Home';
 import Base from './components/Base';
@@ -7,21 +7,23 @@ import Toppings from './components/Toppings';
 import Order from './components/Order';
 
 function App() {
-  const [pizza, setPizza] = useState({ base: "", toppings: [] });
+  const [pizza, setPizza] = useState({ base: '', toppings: [] });
+
+  console.log(pizza);
 
   const addBase = (base) => {
-    setPizza({ ...pizza, base })
-  }
-  
+    setPizza({ ...pizza, base: base });
+  };
+
   const addTopping = (topping) => {
     let newToppings;
-    if(!pizza.toppings.includes(topping)){
+    if (!pizza.toppings.includes(topping)) {
       newToppings = [...pizza.toppings, topping];
     } else {
-      newToppings = pizza.toppings.filter(item => item !== topping);
+      newToppings = pizza.toppings.filter((item) => item !== topping);
     }
     setPizza({ ...pizza, toppings: newToppings });
-  }
+  };
 
   return (
     <>
