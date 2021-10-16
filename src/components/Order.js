@@ -28,6 +28,7 @@ const childVariants = {
   },
   visible: {
     opacity: 1,
+    transition: { delay: 0.5 },
   },
 };
 
@@ -46,7 +47,12 @@ const Order = ({ pizza, setShowModal }) => {
       animate="visible"
       exit="exit"
     >
-      <h2>Thank you for your order :)</h2>
+      <h2>
+        Thank you for your order{' '}
+        <span role="img" aria-label="Thank">
+          🤗
+        </span>
+      </h2>
       <motion.p variants={childVariants}>
         You ordered a {pizza.base} pizza with:
       </motion.p>
